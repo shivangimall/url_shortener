@@ -11,7 +11,12 @@ function restrictToLoggedinUserOnly(req,res,next){
     }
     req.user = user;
     next();
-
+}
+function checkAuth(req,res,next){
+    const userUid = req.cookies?.uid;
+    const user = getUser(userUid);
+    req.user = user;
+    next();
 
 }
-module.exports = {restrictToLoggedinUserOnly};
+module.exports = {restrictToLoggedinUserOnly,checkAuth};
